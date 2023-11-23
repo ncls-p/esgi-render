@@ -1,10 +1,13 @@
-const { Sequelize } = require('sequelize')
+const { Sequelize } = require("sequelize");
+
+const postgressUrl = process.env.POSTGRESS_URL || "";
 
 // Database
 const sequelize = new Sequelize(
-  '', // TODO: database connection string
+  postgressUrl,
+
   {
-    dialect: 'postgres',
+    dialect: "postgres",
     dialectOptions: {
       ssl: {
         require: true,
@@ -12,13 +15,13 @@ const sequelize = new Sequelize(
       },
     },
     define: {
-      createdAt: 'added',
-      updatedAt: 'updated',
-    }
-  },
-)
+      createdAt: "added",
+      updatedAt: "updated",
+    },
+  }
+);
 
-sequelize.authenticate()
-sequelize.sync()
+sequelize.authenticate();
+sequelize.sync();
 
-module.exports = sequelize
+module.exports = sequelize;
